@@ -1,6 +1,6 @@
 name: Autograding Tests
 'on':
-- push
+- workflow_dispatch
 - repository_dispatch
 permissions:
   checks: write
@@ -22,9 +22,19 @@ jobs:
         command: gradle test
         timeout: 10
         max-score: 5
+    - name: Test complete
+      id: test-complete
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Test complete
+        setup-command: gradle build
+        command: gradle test
+        timeout: 10
+        max-score: 5
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
         CLASSES-TEST_RESULTS: "${{steps.classes-test.outputs.result}}"
+        TEST-COMPLETE_RESULTS: "${{steps.test-complete.outputs.result}}"
       with:
-        runners: classes-test
+        runners: classes-test,test-complete
