@@ -1,7 +1,4 @@
 import javax.swing.*;
-import Painting;
-import Vlogger;
-import Player;
 class UserApp extends JFrame {
     private JPanel panel;
     private Painting painting;
@@ -23,7 +20,7 @@ class UserApp extends JFrame {
         panel.add(new JLabel("Age: " + painting.getYear()));
         
         panel.add(new JLabel("Vlogger: " + vlogger.getName()));
-        panel.add(new JLabel("Joined: " + painting.getYearJoined()));
+        panel.add(new JLabel("Joined: " + vlogger.getYearJoined()));
     }
 
     public static void main(String[] args) {
