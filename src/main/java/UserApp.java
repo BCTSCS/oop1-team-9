@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 class UserApp extends JFrame {
     private JPanel panel;
     private Painting painting;
@@ -21,9 +22,12 @@ class UserApp extends JFrame {
         
         panel.add(new JLabel("Vlogger: " + vlogger.getName()));
         panel.add(new JLabel("Joined: " + vlogger.getYearJoined()));
+
+        add(panel);
+        setVisible(true);
     }
 
     public static void main(String[] args) {
-
+        new UserApp();
     }
 }
