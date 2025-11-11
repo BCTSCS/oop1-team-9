@@ -1,4 +1,3 @@
-import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
 import java.io.*;
@@ -26,22 +25,20 @@ public class SimpleClient {
     public String receiveMessage() {
         return in.nextLine();
     }
-    public static void main(String[] args) {
-        try {
-            SimpleClient a = new SimpleClient("127.0.0.1",888);
-            a.sendMessage("Heyyy");
-            String server = a.receiveMessage();
-            System.out.println("Server : "+ server);
+    public static void main(String[] args) throws IOException {
+        SimpleClient a = new SimpleClient("127.0.0.1",8888);
+        fileOperator file = new fileOperator("client.txt");
             while (true) {
+                String message = file.readLine();
+                a.sendMessage(message);
+                System.out.println("Me: " + message);
+                String server = a.receiveMessage();
+                System.out.println("Server : "+ server);
                 a.sendMessage("Client");
-                String reply = a.receiveMessage();
-                System.out.println(reply+" ");
-                if(reply.equals("stop")){
+                if(message.equals("stop")) {
                     break;
                 }
             }
-            a.close();      
-        }
-    catch(Exception e) {}
+        
     }
 }

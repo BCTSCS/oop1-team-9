@@ -11,13 +11,6 @@ public class fileOperator {
         fileReader = new Scanner(myFile);
     }
     public String readLine() {
-        if (fileReader.hasNextLine()) {
-            return fileReader.nextLine();
-        } else {
-            return null;
-        }
-    }
-    public void close() {
-        fileReader.close();
+        return fileReader.nextLine();
     }
 }

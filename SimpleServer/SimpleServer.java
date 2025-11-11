@@ -31,18 +31,21 @@ public class SimpleServer {
     }
     public static void main(String[] args) {
         try{
-            SimpleServer s = new SimpleServer(888);
+            SimpleServer s = new SimpleServer(8888);
+            fileOperator file = new fileOperator("server.txt");
             s.acceptClient();
             while (true) {
                 String user = s.receiveMessage();
-                s.sendMessage("Received: " + user);
+                System.out.println("User: " + user);
+                String response = file.readLine();
+                s.sendMessage(file.readLine());
+                System.out.println("Us: " + response);
                 if (user.equals("stop")) {
                     break;
                 }
             }
             s.close();
         }
-    catch(IOException e) {}
     }
 }
 
